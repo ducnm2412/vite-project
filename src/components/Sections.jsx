@@ -3,6 +3,7 @@ import { CONTACT, EXPERIENCES, FAQS, PHOTO_INDEX, REVIEWS, ROOMS, STATS_SAMPLE }
 import { Blossoms, Branch, Icon } from './Decor'
 import useCarousel from '../hooks/useCarousel'
 import { Photo } from './Lightbox'
+import Flora from './Flora'
 
 const STATS = [{ value: String(ROOMS.length).padStart(2, '0'), label: 'Phòng nghỉ' }, ...STATS_SAMPLE]
 
@@ -11,6 +12,7 @@ export function About() {
     <>
       <span id="gioi-thieu" className="anchor" aria-hidden="true" />
       <section className="section about">
+        <Flora preset="about" />
         <div className="container about__grid">
           <div className="about__media">
             <Photo className="arch about__img-a" photo={PHOTO_INDEX.garden} />
@@ -72,6 +74,7 @@ export function Rooms({ onBook }) {
     <>
       <span id="phong-nghi" className="anchor" aria-hidden="true" />
       <section className="section rooms">
+        <Flora preset="rooms" />
         <div className="container">
           <div className="section-head section-head--split">
             <h2 className="display h2">
@@ -129,6 +132,7 @@ export function Experience() {
     <>
       <span id="trai-nghiem" className="anchor" aria-hidden="true" />
       <section className="section experience">
+        <Flora preset="experience" />
         <div className="container">
           <div className="exp-panel">
             <Branch className="exp-panel__fern" leaves={11} tone="#9fbf86" flip />
@@ -167,6 +171,7 @@ export function Gallery() {
     <>
       <span id="hinh-anh" className="anchor" aria-hidden="true" />
       <section className="section gallery">
+        <Flora preset="gallery" />
         <div className="container">
           <div className="section-head section-head--split section-head--end">
             <h2 className="display h2">
@@ -194,6 +199,7 @@ export function Testimonials() {
 
   return (
     <section className="section testimonials">
+      <Flora preset="testimonials" />
       <Blossoms className="testimonials__flower" />
       <div className="container">
         <div className="section-head section-head--center">
@@ -250,6 +256,7 @@ export function Faq() {
   const [openIndex, setOpenIndex] = useState(-1)
   return (
     <section className="section faq">
+      <Flora preset="faq" />
       <div className="container">
         <div className="section-head section-head--split">
           <h2 className="display h2">

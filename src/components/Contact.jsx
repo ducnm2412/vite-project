@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { CONTACT, ROOMS } from '../data'
 import { Branch } from './Decor'
+import Flora from './Flora'
 
 const PHONE_RE = /^(0|\+84)\d{9,10}$/
 
@@ -67,6 +68,7 @@ export default function Contact({ booking, setBooking }) {
     <>
       <span id="lien-he" className="anchor" aria-hidden="true" />
       <section className="contact">
+        <Flora preset="contact" />
         <Branch className="contact__fern" leaves={12} tone="#9cc46a" flip />
         <div className="container contact__grid">
           <div className="contact__head">

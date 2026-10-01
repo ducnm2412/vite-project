@@ -161,6 +161,59 @@
   to { rotate: 3deg; }
 }
 
+/* ---------- Hoa lá cỏ chuyển động sau nền section ---------- */
+.flora {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+.flora__item {
+  position: absolute;
+  display: block;
+  opacity: 0.55;
+}
+.flora__item svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+/* cành dương xỉ trong flora: bỏ định vị riêng của .branch */
+.flora__item .branch {
+  position: static;
+}
+/* ngọn cỏ đung đưa quanh gốc của chính nó */
+.grass__blade {
+  transform-box: fill-box;
+  transform-origin: 50% 100%;
+  animation: blade 4s ease-in-out infinite alternate;
+}
+@keyframes blade {
+  from { rotate: -7deg; }
+  to { rotate: 8deg; }
+}
+/* lá bay lơ lửng */
+.drift {
+  position: absolute;
+  inset: 0;
+}
+.drift svg {
+  position: absolute;
+  opacity: 0.8;
+  animation: float-leaf 16s ease-in-out infinite;
+}
+@keyframes float-leaf {
+  0%   { transform: translate(0, 0) rotate(0deg); }
+  25%  { transform: translate(18px, -14px) rotate(35deg); }
+  50%  { transform: translate(-6px, -26px) rotate(-10deg); }
+  75%  { transform: translate(-20px, -8px) rotate(25deg); }
+  100% { transform: translate(0, 0) rotate(0deg); }
+}
+.contact .flora__item {
+  opacity: 0.7;
+}
+
 /* ---------- Header ---------- */
 .header {
   position: fixed;
@@ -1330,6 +1383,12 @@
 
 /* Điện thoại */
 @media (max-width: 640px) {
+  .flora__item {
+    opacity: 0.4;
+  }
+  .flora__item--hide-sm {
+    display: none;
+  }
   .hero {
     align-items: flex-end;
     padding-bottom: 104px;
