@@ -120,6 +120,14 @@ const ICONS = {
   book: <path d="M4 5.5C6.5 4.5 9.5 4.5 12 6c2.5-1.5 5.5-1.5 8-.5V19c-2.5-1-5.5-1-8 .5-2.5-1.5-5.5-1.5-8-.5V5.5ZM12 6v13.5" />,
   sprout: <path d="M12 20v-8m0 0C12 8 9 6 5 6c0 4 3 6 7 6Zm0-1c0-3.5 2.5-6 7-6 0 4-3 6-7 6" />,
   plus: <path d="M12 5v14M5 12h14" />,
+  'arrow-right': <path d="M5 12h14m-5-5 5 5-5 5" />,
+  bike: (
+    <>
+      <circle cx="6" cy="16" r="3.5" />
+      <circle cx="18" cy="16" r="3.5" />
+      <path d="M6 16l4-7h5l3 7M10 9l2 7h-6M14 6h2.5" />
+    </>
+  ),
   pin: (
     <>
       <path d="M12 21s-6.5-6-6.5-11a6.5 6.5 0 0 1 13 0c0 5-6.5 11-6.5 11Z" />
@@ -154,15 +162,5 @@ export function Icon({ name, size = 18 }) {
     >
       {ICONS[name]}
     </svg>
-  )
-}
-
-export function Eyebrow({ index, children, light = false }) {
-  return (
-    <p className={`eyebrow${light ? ' eyebrow--light' : ''}`}>
-      <span>{index}</span>
-      <i aria-hidden="true" />
-      {children}
-    </p>
   )
 }

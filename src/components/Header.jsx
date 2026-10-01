@@ -24,8 +24,10 @@ export default function Header() {
     <header className={`header${scrolled || open ? ' header--solid' : ''}`}>
       <div className="container header__inner">
         <a href="#top" className="logo" aria-label="TỊNH House – về đầu trang">
-          <img src="/Logo.jpg" alt="" width="40" height="40" />
-          <span>TỊNH House</span>
+          <img src="/Logo.jpg" alt="" width="36" height="36" />
+          <span>
+            TỊNH<em>.house</em>
+          </span>
         </a>
 
         <nav id="main-nav" className={`nav${open ? ' nav--open' : ''}`} aria-label="Điều hướng chính">
@@ -34,12 +36,12 @@ export default function Header() {
               {item.label}
             </a>
           ))}
-          <a href="#lien-he" className="btn btn--clay nav__cta-mobile" onClick={() => setOpen(false)}>
+          <a href="#lien-he" className="btn btn--lime nav__cta-mobile" onClick={() => setOpen(false)}>
             Đặt phòng
           </a>
         </nav>
 
-        <a href="#lien-he" className="btn btn--clay header__cta">
+        <a href="#lien-he" className="btn btn--lime header__cta">
           Đặt phòng
         </a>
         <button

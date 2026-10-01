@@ -1,39 +1,42 @@
 :root {
-  --paper: #f4f0e6;
-  --paper-2: #ebe5d6;
-  --card: #fffdf8;
-  --ink: #26302a;
-  --ink-soft: #5f665f;
-  --forest: #2f4836;
-  --forest-2: #253a2b;
-  --leaf: #6f8a5e;
-  --leaf-soft: #a9bd98;
-  --sage: #e1e8d6;
+  /* xanh rừng — nền chính của trang */
+  --green-950: #12261a;
+  --green-900: #1a3423;
+  --green-800: #22412d;
+  --green-700: #2d5339;
+  /* màu nhấn */
+  --lime: #c6e18c;
+  --lime-2: #b2d26c;
+  --clay: #b5653d;
+  --clay-2: #9a5230;
+  /* nền sáng */
+  --cream: #f3eedf;
+  --card: #fffdf6;
+  --ink: #18301f;
+  --ink-soft: #56625a;
+  --line: #e2dccb;
+  /* chữ trên nền tối */
+  --on-dark: #e8efe2;
+  --on-dark-soft: rgba(232, 239, 226, 0.72);
+  --line-dark: rgba(232, 239, 226, 0.14);
+  /* hoạ tiết lá */
+  --leaf: #6f9a5c;
+  --leaf-soft: #4f7a45;
 
-  /* nền các section — chuyển dần: kem → xanh vườn → vàng gỗ → xanh rừng */
-  --tone-cream: #f4f0e6;
-  --tone-mist: #ecefe1;
-  --tone-leaf: #dfe8d3;
-  --tone-sand: #efe4cf;
-  --tone-wheat: #f3ebdb;
-  --clay: #a0623f;
-  --clay-2: #8a5233;
-  --line: #ddd5c3;
-
-  --serif: 'Lora', Georgia, 'Times New Roman', serif;
   --sans: 'Be Vietnam Pro', system-ui, 'Segoe UI', sans-serif;
+  --serif: 'Lora', Georgia, 'Times New Roman', serif;
 
-  --r-sm: 6px;
-  --r-md: 12px;
-  --r-lg: 22px;
+  --r-sm: 8px;
+  --r-md: 14px;
+  --r-lg: 28px;
 
   /* khoảng đệm trên/dưới mỗi section — co giãn theo màn hình */
-  --section-y: clamp(28px, 3.6vw, 48px);
+  --section-y: clamp(36px, 4.5vw, 64px);
 
-  color-scheme: light;
+  color-scheme: dark;
   font: 400 16px/1.6 var(--sans);
-  color: var(--ink);
-  background: var(--paper);
+  color: var(--on-dark);
+  background: var(--green-900);
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }
@@ -51,7 +54,7 @@ html {
 
 body {
   margin: 0;
-  background: var(--paper);
+  background: var(--green-900);
   overflow-x: hidden;
 }
 
@@ -60,7 +63,7 @@ img {
   max-width: 100%;
 }
 
-h1, h2, h3, p, ul, figure, blockquote {
+h1, h2, h3, p, ul, dl, dd, figure, blockquote {
   margin: 0;
 }
 
@@ -79,7 +82,7 @@ button, input, select, textarea {
 }
 
 :focus-visible {
-  outline: 2px solid var(--clay);
+  outline: 2px solid var(--lime);
   outline-offset: 3px;
 }
 

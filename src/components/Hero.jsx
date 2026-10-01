@@ -1,4 +1,4 @@
-import { IMAGES } from '../data'
+import { IMAGES, MARQUEE } from '../data'
 import { FallingLeaves } from './Decor'
 
 export default function Hero() {
@@ -23,5 +23,23 @@ export default function Hero() {
         <span aria-hidden="true" />
       </a>
     </section>
+  )
+}
+
+/* Dải chữ chạy ngang ngay dưới hero */
+export function Marquee() {
+  const row = MARQUEE.map((word) => (
+    <span key={word}>
+      {word}
+      <i aria-hidden="true">✦</i>
+    </span>
+  ))
+  return (
+    <div className="marquee" role="note" aria-label={MARQUEE.join(', ')}>
+      <div className="marquee__track" aria-hidden="true">
+        <div className="marquee__group">{row}</div>
+        <div className="marquee__group">{row}</div>
+      </div>
+    </div>
   )
 }
