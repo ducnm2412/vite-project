@@ -12,6 +12,14 @@ export default function Hero() {
       </div>
 
       <div className="container hero__content">
+        <img
+          className="hero__logo"
+          src="/logo-tinh-light.png"
+          alt="TỊNH House"
+          width="720"
+          height="486"
+          fetchPriority="high"
+        />
         <p className="hero__kicker">Homestay · Lưu trú giữa vườn xanh</p>
         <h1 className="hero__title">Một chốn tĩnh lặng, xanh mát và mộc mạc</h1>
         <p className="hero__lead">

@@ -25,6 +25,9 @@
 
   --sans: 'Be Vietnam Pro', system-ui, 'Segoe UI', sans-serif;
   --serif: 'Lora', Georgia, 'Times New Roman', serif;
+  /* chữ thương hiệu giống logo: TỊNH (có chân) + House (viết tay) */
+  --brand-serif: 'Cormorant Garamond', 'Lora', Georgia, serif;
+  --brand-script: 'Sacramento', 'Brush Script MT', cursive;
 
   --r-sm: 8px;
   --r-md: 14px;

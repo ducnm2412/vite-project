@@ -239,23 +239,34 @@
   gap: 10px;
   text-decoration: none;
 }
-.logo img {
-  width: 36px;
-  height: 36px;
-  object-fit: cover;
-  border-radius: 10px;
+/* chữ thương hiệu theo logo: mái nhà + TỊNH (có chân) + House (viết tay) */
+.brand {
+  display: inline-flex;
+  align-items: flex-end;
+  gap: 4px;
+  line-height: 1;
+  color: var(--cream);
 }
-.logo span,
-.footer__logo {
-  font-size: 1.15rem;
-  font-weight: 800;
-  letter-spacing: -0.01em;
+.brand__mark {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
-.logo em,
-.footer__logo em {
-  font-style: normal;
-  font-weight: 500;
-  color: var(--on-dark-soft);
+.brand__roof {
+  width: 34px;
+  height: 12px;
+  margin-bottom: 1px;
+}
+.brand__name {
+  font-family: var(--brand-serif);
+  font-size: 1.6rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+}
+.brand__script {
+  font-family: var(--brand-script);
+  font-size: 1.7rem;
+  translate: 0 6px;
 }
 .nav {
   display: flex;
@@ -320,8 +331,9 @@
   to { transform: scale(1.22) translate(-2.5%, -1.5%); }
 }
 .hero__shade {
+  /* tối ở giữa để logo và chữ căn giữa luôn rõ */
   background:
-    linear-gradient(90deg, rgba(18, 38, 26, 0.74) 0%, rgba(18, 38, 26, 0.36) 55%, rgba(18, 38, 26, 0.15) 100%),
+    radial-gradient(ellipse 70% 60% at 50% 50%, rgba(18, 38, 26, 0.62), rgba(18, 38, 26, 0.3) 75%),
     linear-gradient(0deg, rgba(18, 38, 26, 0.55), transparent 35%);
 }
 /* vệt nắng trôi chậm */
@@ -357,7 +369,17 @@
   to { transform: translate(-8vw, 6vh); opacity: 1; }
 }
 .hero__content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
   animation: rise 0.9s ease-out both;
+}
+.hero__logo {
+  width: clamp(190px, 28vw, 360px);
+  height: auto;
+  margin-bottom: clamp(18px, 3vh, 28px);
+  filter: drop-shadow(0 6px 22px rgba(0, 0, 0, 0.35));
 }
 .hero__kicker {
   margin-bottom: 16px;
@@ -367,11 +389,11 @@
   opacity: 0.85;
 }
 .hero__title {
-  max-width: 19ch;
-  margin-bottom: 18px;
+  max-width: 22ch;
+  margin-bottom: 14px;
   font-family: var(--serif);
   font-weight: 400;
-  font-size: clamp(1.85rem, 1.1rem + 3.6vw, 3.6rem);
+  font-size: clamp(1.45rem, 1rem + 2.2vw, 2.6rem);
   line-height: 1.12;
   text-wrap: balance;
 }
@@ -1078,7 +1100,6 @@
   font-size: 0.8rem;
 }
 .footer__logo {
-  color: #fff;
   text-decoration: none;
 }
 .footer__links {
@@ -1390,8 +1411,16 @@
     display: none;
   }
   .hero {
-    align-items: flex-end;
-    padding-bottom: 104px;
+    padding-bottom: 96px;
+  }
+  .brand__name {
+    font-size: 1.4rem;
+  }
+  .brand__script {
+    font-size: 1.5rem;
+  }
+  .brand__roof {
+    width: 30px;
   }
   .hero__lead {
     font-size: 0.92rem;
@@ -1505,7 +1534,7 @@
   .stats dd {
     font-size: 1.4rem;
   }
-  .logo span {
-    font-size: 1rem;
+  .brand__name {
+    font-size: 1.25rem;
   }
 }

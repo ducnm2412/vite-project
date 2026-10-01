@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { CONTACT, EXPERIENCES, FAQS, PHOTO_INDEX, REVIEWS, ROOMS, STATS_SAMPLE } from '../data'
-import { Blossoms, Branch, Icon } from './Decor'
+import { Blossoms, Branch, Brand, Icon } from './Decor'
 import useCarousel from '../hooks/useCarousel'
 import { Photo } from './Lightbox'
 import Flora from './Flora'
@@ -301,8 +301,8 @@ export function Footer() {
   return (
     <footer className="footer">
       <div className="container footer__inner">
-        <a href="#top" className="footer__logo">
-          TỊNH<em>.house</em>
+        <a href="#top" className="footer__logo" aria-label="TỊNH House – về đầu trang">
+          <Brand />
         </a>
         <nav className="footer__links" aria-label="Liên kết">
           <a href={CONTACT.facebook} target="_blank" rel="noreferrer">

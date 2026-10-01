@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { NAV } from '../data'
-import { Icon } from './Decor'
+import { Brand, Icon } from './Decor'
 
 export default function Header() {
   const [scrolled, setScrolled] = useState(false)
@@ -24,10 +24,7 @@ export default function Header() {
     <header className={`header${scrolled || open ? ' header--solid' : ''}`}>
       <div className="container header__inner">
         <a href="#top" className="logo" aria-label="TỊNH House – về đầu trang">
-          <img src="/Logo.jpg" alt="" width="36" height="36" />
-          <span>
-            TỊNH<em>.house</em>
-          </span>
+          <Brand />
         </a>
 
         <nav id="main-nav" className={`nav${open ? ' nav--open' : ''}`} aria-label="Điều hướng chính">

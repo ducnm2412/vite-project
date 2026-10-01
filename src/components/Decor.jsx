@@ -164,3 +164,20 @@ export function Icon({ name, size = 18 }) {
     </svg>
   )
 }
+
+/* Chữ thương hiệu theo logo: mái nhà trên chữ TỊNH, "House" viết tay bên cạnh */
+export function Brand({ className = '' }) {
+  return (
+    <span className={`brand ${className}`}>
+      <span className="brand__mark">
+        <svg className="brand__roof" viewBox="0 0 60 22" aria-hidden="true">
+          <path d="M4 20 30 4l26 16" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
+          <path d="M44 12V3h5v12" fill="none" stroke="currentColor" strokeWidth="2.6" />
+          <path d="M26.5 10.5h3v3h-3zM30.5 10.5h3v3h-3zM26.5 14.5h3v3h-3zM30.5 14.5h3v3h-3z" fill="currentColor" />
+        </svg>
+        <span className="brand__name">TỊNH</span>
+      </span>
+      <span className="brand__script">House</span>
+    </span>
+  )
+}
