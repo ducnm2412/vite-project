@@ -37,8 +37,8 @@
 /* ---------- Typography ---------- */
 .display {
   font-weight: 800;
-  /* chữ in hoa tiếng Việt có dấu chồng (Ể, Ở, Ố…) cần dòng thoáng hơn */
-  line-height: 1.1;
+  /* chữ in hoa tiếng Việt có dấu chồng (Ể, Ở, Ố, Ấ…) cần dòng thoáng để dấu không bị dòng trên che */
+  line-height: 1.22;
   letter-spacing: -0.015em;
   text-transform: uppercase;
   text-wrap: balance;
