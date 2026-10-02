@@ -25,20 +25,22 @@ export function Branch({ className = '', leaves = 9, flip = false, tone = 'var(-
       viewBox="0 0 120 250"
       aria-hidden="true"
       style={{
-        ...(flip && { transform: 'scaleX(-1)' }),
         // lệch pha để các cành không đung đưa cùng nhịp
         animationDelay: `-${leaves * 0.9}s`,
         animationDuration: `${6 + (leaves % 4)}s`,
       }}
     >
-      <path
-        d="M58 248C62 190 76 120 70 60 68 40 64 28 62 18"
-        fill="none"
-        stroke={tone}
-        strokeWidth="1.6"
-        strokeLinecap="round"
-      />
-      {items}
+      {/* lật trong SVG (không dùng CSS transform) để không đè lên animation đung đưa */}
+      <g transform={flip ? 'matrix(-1 0 0 1 120 0)' : undefined}>
+        <path
+          d="M58 248C62 190 76 120 70 60 68 40 64 28 62 18"
+          fill="none"
+          stroke={tone}
+          strokeWidth="1.6"
+          strokeLinecap="round"
+        />
+        {items}
+      </g>
     </svg>
   )
 }

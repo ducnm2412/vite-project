@@ -5,7 +5,7 @@ import { useCallback, useEffect, useRef, useState } from 'react'
  * - theo dõi slide đang hiện từ vị trí cuộn
  * - prev/next/goTo cuộn mượt tới slide
  * - tự trượt khi người dùng không thao tác (dừng khi chạm, rê chuột, focus,
- *   khi slider ra khỏi màn hình hoặc tab bị ẩn; tắt hẳn nếu giảm chuyển động)
+ *   khi slider ra khỏi màn hình hoặc tab bị ẩn; chạy thưa hơn nếu giảm chuyển động)
  * Chỉ hoạt động khi danh sách thật sự cuộn được (mobile/tablet).
  */
 export default function useCarousel(count, { interval = 4500, resumeAfter = 6000 } = {}) {
@@ -79,7 +79,11 @@ export default function useCarousel(count, { interval = 4500, resumeAfter = 6000
   useEffect(() => {
     const track = trackRef.current
     if (!track) return
-    const onEnter = () => (hovering.current = true)
+    // chỉ tính "đang rê" với chuột thật: chạm trên điện thoại sinh mouseenter giả
+    // nhưng không có mouseleave, khiến slider dừng tự trượt mãi mãi
+    const onEnter = (e) => {
+      if (e.pointerType === 'mouse') hovering.current = true
+    }
     const onLeave = () => (hovering.current = false)
     const io = new IntersectionObserver(([entry]) => (visible.current = entry.isIntersecting), {
       threshold: 0.5,
@@ -89,28 +93,29 @@ export default function useCarousel(count, { interval = 4500, resumeAfter = 6000
     track.addEventListener('touchstart', pause, { passive: true })
     track.addEventListener('wheel', pause, { passive: true })
     track.addEventListener('focusin', pause)
-    track.addEventListener('mouseenter', onEnter)
-    track.addEventListener('mouseleave', onLeave)
+    track.addEventListener('pointerenter', onEnter)
+    track.addEventListener('pointerleave', onLeave)
     return () => {
       io.disconnect()
       track.removeEventListener('pointerdown', pause)
       track.removeEventListener('touchstart', pause)
       track.removeEventListener('wheel', pause)
       track.removeEventListener('focusin', pause)
-      track.removeEventListener('mouseenter', onEnter)
-      track.removeEventListener('mouseleave', onLeave)
+      track.removeEventListener('pointerenter', onEnter)
+      track.removeEventListener('pointerleave', onLeave)
     }
   }, [pause])
 
   // tự trượt
   useEffect(() => {
     if (!scrollable) return
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+    // giảm chuyển động (thường do tiết kiệm pin tự bật): vẫn tự trượt nhưng thưa hơn
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
     const id = setInterval(() => {
       if (document.hidden || !visible.current || hovering.current) return
       if (Date.now() < pausedUntil.current) return
       goTo(index + 1)
-    }, interval)
+    }, reduced ? interval * 1.8 : interval)
     return () => clearInterval(id)
   }, [scrollable, index, interval, goTo])
 

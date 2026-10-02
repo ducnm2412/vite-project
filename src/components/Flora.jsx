@@ -60,7 +60,7 @@ const ON_LIME = '#8fb85a'
  */
 const PRESETS = {
   about: [
-    { kind: 'fern', tone: DARK, style: { left: '-28px', bottom: '-12px', width: 'clamp(90px, 11vw, 150px)', rotate: '14deg' } },
+    { kind: 'fern', tone: DARK, style: { left: '-28px', bottom: '-12px', width: 'clamp(90px, 11vw, 150px)', transform: 'rotate(14deg)' } },
     { kind: 'grass', tone: DARK_2, style: { right: '3%', bottom: 0, width: 'clamp(110px, 13vw, 180px)' } },
     { kind: 'drift', tone: DARK_2, hideSm: true, style: { right: '6%', top: '8%', width: '22%', height: '40%' } },
   ],

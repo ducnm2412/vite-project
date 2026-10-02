@@ -89,18 +89,12 @@ button, input, select, textarea {
   outline-offset: 3px;
 }
 
+/*
+ * Máy bật "giảm chuyển động" (kể cả do tiết kiệm pin tự bật): không tắt hết,
+ * chỉ làm chậm chuyển động nền và bỏ các hiệu ứng mạnh. Phần chi tiết ở cuối App.css.
+ */
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
-  }
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-  }
-  .falling {
-    display: none;
   }
 }

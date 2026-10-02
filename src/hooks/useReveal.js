@@ -20,13 +20,13 @@ const TRACKS = '.rooms__grid, .reviews'
 
 /*
  * Hiệu ứng hiện dần khi cuộn tới. Class chỉ được gắn bằng JS, nên nếu JS lỗi
- * hoặc người dùng bật giảm chuyển động thì nội dung vẫn hiện bình thường.
+ * thì nội dung vẫn hiện bình thường. Khi máy bật giảm chuyển động, CSS chỉ giữ
+ * hiệu ứng mờ dần (không nhích, không kéo rèm).
  */
 export default function useReveal(containerRef) {
   useEffect(() => {
     const root = containerRef.current
     if (!root) return
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
 
     const mark = (selectors, cls) =>
       selectors.flatMap((sel) =>

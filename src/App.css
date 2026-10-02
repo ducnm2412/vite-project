@@ -157,8 +157,8 @@
   animation: sway 5s ease-in-out infinite alternate;
 }
 @keyframes sway {
-  from { rotate: -2.5deg; }
-  to { rotate: 3deg; }
+  from { transform: rotate(-2.5deg); }
+  to { transform: rotate(3deg); }
 }
 
 /* ---------- Hoa lá cỏ chuyển động sau nền section ---------- */
@@ -190,8 +190,8 @@
   animation: blade 4s ease-in-out infinite alternate;
 }
 @keyframes blade {
-  from { rotate: -7deg; }
-  to { rotate: 8deg; }
+  from { transform: rotate(-7deg); }
+  to { transform: rotate(8deg); }
 }
 /* lá bay lơ lửng */
 .drift {
@@ -224,6 +224,7 @@
 }
 .header--solid {
   background: rgba(26, 52, 35, 0.94);
+  -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
   box-shadow: 0 1px 0 var(--line-dark);
 }
@@ -266,7 +267,7 @@
 .brand__script {
   font-family: var(--brand-script);
   font-size: 1.7rem;
-  translate: 0 6px;
+  transform: translateY(6px);
 }
 .nav {
   display: flex;
@@ -415,7 +416,7 @@
   place-items: center;
   width: 44px;
   height: 44px;
-  translate: -50% 0;
+  transform: translateX(-50%);
   border-radius: 50%;
 }
 .hero__scroll span {
@@ -686,7 +687,7 @@
   inset: 50% auto auto 50%;
   width: 8px;
   height: 8px;
-  translate: -50% -50%;
+  transform: translate(-50%, -50%);
   border-radius: 999px;
   background: rgba(232, 239, 226, 0.3);
   transition: width 0.3s, background-color 0.3s;
@@ -774,7 +775,7 @@
   color: var(--green-900);
   background: var(--lime);
   border-radius: 999px;
-  rotate: 12deg;
+  transform: rotate(12deg);
   box-shadow: 0 10px 20px -10px rgba(0, 0, 0, 0.4);
 }
 
@@ -1139,6 +1140,10 @@
 .lightbox::backdrop {
   background: transparent;
 }
+/* bản dự phòng khi trình duyệt không có <dialog> */
+.lightbox--fallback {
+  z-index: 1000;
+}
 .lightbox__stage {
   position: absolute;
   inset: 64px 88px 72px;
@@ -1197,7 +1202,7 @@
 .lightbox__prev,
 .lightbox__next {
   top: 50%;
-  translate: 0 -50%;
+  transform: translateY(-50%);
 }
 .lightbox__prev {
   left: 20px;
@@ -1237,6 +1242,49 @@
 .reveal-curtain.is-visible {
   clip-path: inset(0 0 0 0);
   transform: none;
+}
+
+/* ---------- Giảm chuyển động: giữ nhẹ, chậm lại; bỏ hiệu ứng mạnh ---------- */
+@media (prefers-reduced-motion: reduce) {
+  /* bỏ hẳn: lá rơi khắp hero, ảnh mở như kéo rèm, chữ nhích lên */
+  .falling {
+    display: none;
+  }
+  .reveal-curtain {
+    clip-path: none;
+    transform: none;
+    transition: none;
+  }
+  .reveal {
+    transform: none;
+    transition: opacity 0.6s ease;
+  }
+  .hero__content,
+  .lightbox,
+  .lightbox__img {
+    animation: none;
+  }
+  /* giữ nhưng chậm lại (inline style đặt thời lượng nên cần !important) */
+  .hero__bg {
+    animation-duration: 40s;
+  }
+  .hero__light::before,
+  .hero__light::after {
+    animation-duration: 40s;
+  }
+  .marquee__track {
+    animation-duration: 70s;
+  }
+  .branch,
+  .blossoms {
+    animation-duration: 14s !important;
+  }
+  .grass__blade {
+    animation-duration: 8s !important;
+  }
+  .drift svg {
+    animation-duration: 34s !important;
+  }
 }
 
 /* ---------- Responsive ---------- */
@@ -1516,7 +1564,7 @@
   .lightbox__next {
     top: auto;
     bottom: 20px;
-    translate: none;
+    transform: none;
   }
   .lightbox__prev {
     left: calc(50% - 60px);

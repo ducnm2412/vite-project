@@ -42,6 +42,10 @@ export function Photo({ photo, className, ...rest }) {
   )
 }
 
+// trình duyệt cũ / WebView trong app có thể chưa có <dialog> → dùng <div role="dialog">
+const SUPPORTS_DIALOG =
+  typeof HTMLDialogElement === 'function' && typeof HTMLDialogElement.prototype.showModal === 'function'
+
 function Lightbox({ index, onChange, onClose }) {
   const dialogRef = useRef(null)
   const startX = useRef(null)
@@ -57,10 +61,11 @@ function Lightbox({ index, onChange, onClose }) {
     const html = document.documentElement
     const prevOverflow = html.style.overflow
     html.style.overflow = 'hidden'
-    dialog.showModal()
+    if (SUPPORTS_DIALOG) dialog.showModal()
+    else dialog.querySelector('.lightbox__close')?.focus()
     return () => {
       html.style.overflow = prevOverflow
-      if (dialog.open) dialog.close()
+      if (SUPPORTS_DIALOG && dialog.open) dialog.close()
       opener?.focus?.({ preventScroll: true })
     }
   }, [])
@@ -68,6 +73,8 @@ function Lightbox({ index, onChange, onClose }) {
   const onKeyDown = (e) => {
     if (e.key === 'ArrowRight') go(1)
     if (e.key === 'ArrowLeft') go(-1)
+    // <dialog> tự xử lý Esc qua sự kiện cancel; bản dự phòng phải tự bắt
+    if (e.key === 'Escape' && !SUPPORTS_DIALOG) onClose()
   }
 
   // vuốt trái/phải trên điện thoại
@@ -86,15 +93,22 @@ function Lightbox({ index, onChange, onClose }) {
     if (e.target === e.currentTarget) onClose()
   }
 
+  const Root = SUPPORTS_DIALOG ? 'dialog' : 'div'
+  const rootProps = SUPPORTS_DIALOG
+    ? {
+        onCancel: (e) => {
+          e.preventDefault()
+          onClose()
+        },
+      }
+    : { role: 'dialog', 'aria-modal': true, className: 'lightbox lightbox--fallback' }
+
   return (
-    <dialog
+    <Root
       ref={dialogRef}
       className="lightbox"
       aria-label="Xem ảnh toàn màn hình"
-      onCancel={(e) => {
-        e.preventDefault()
-        onClose()
-      }}
+      {...rootProps}
       onKeyDown={onKeyDown}
       onClick={onBackdropClick}
     >
@@ -123,6 +137,6 @@ function Lightbox({ index, onChange, onClose }) {
       <button type="button" className="lightbox__btn lightbox__next" onClick={() => go(1)} aria-label="Ảnh tiếp theo">
         <Icon name="chevron-right" size={24} />
       </button>
-    </dialog>
+    </Root>
   )
 }
