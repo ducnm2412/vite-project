@@ -1244,17 +1244,22 @@
   transform: none;
 }
 
-/* ---------- Giảm chuyển động: giữ nhẹ, chậm lại; bỏ hiệu ứng mạnh ---------- */
+/* ---------- Giảm chuyển động: giữ mọi hiệu ứng nhưng nhẹ và chậm hơn ---------- */
 @media (prefers-reduced-motion: reduce) {
-  /* bỏ hẳn: lá rơi khắp hero, ảnh mở như kéo rèm, chữ nhích lên */
-  .falling {
+  /* lá rơi: chỉ giữ 3 chiếc (xen kẽ), rơi chậm hơn */
+  .falling span:nth-child(even) {
     display: none;
   }
-  .reveal-curtain {
-    clip-path: none;
-    transform: none;
-    transition: none;
+  .falling span {
+    animation-duration: 36s !important;
   }
+  /* ảnh mở như kéo rèm: nhanh, không phóng to */
+  .reveal-curtain {
+    transform: none;
+    transition: clip-path 0.5s ease-out;
+    transition-delay: calc(var(--reveal-i, 0) * 80ms);
+  }
+  /* chữ: chỉ mờ dần, không nhích lên */
   .reveal {
     transform: none;
     transition: opacity 0.6s ease;
