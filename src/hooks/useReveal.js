@@ -74,7 +74,30 @@ export default function useReveal(containerRef) {
     )
     targets.forEach((el) => io.observe(el))
 
+    // nhảy thẳng xuống (bấm menu) hoặc cuộn quá nhanh trên máy yếu: phần tử bị lướt
+    // qua không bao giờ "giao" với màn hình nên IntersectionObserver không báo —
+    // kiểm tra khi cuộn và cho hiện mọi phần tử đã nằm phía trên mép dưới màn hình
+    let frame = 0
+    const catchUp = () => {
+      cancelAnimationFrame(frame)
+      frame = requestAnimationFrame(() => {
+        const limit = window.innerHeight * 0.88
+        targets.forEach((el) => {
+          if (el.dataset.revealed) return
+          if (el.getBoundingClientRect().top < limit) {
+            el.dataset.revealed = '1'
+            show(el)
+            io.unobserve(el)
+          }
+        })
+      })
+    }
+    window.addEventListener('scroll', catchUp, { passive: true })
+
     return () => {
+      window.removeEventListener('scroll', catchUp)
+      cancelAnimationFrame(frame)
+      targets.forEach((el) => delete el.dataset.revealed)
       io.disconnect()
       root
         .querySelectorAll('.reveal, .reveal-curtain')

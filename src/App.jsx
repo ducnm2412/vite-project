@@ -6,6 +6,7 @@ import Contact from './components/Contact'
 import { LightboxProvider } from './components/Lightbox'
 import { About, Experience, Faq, Footer, Gallery, Rooms, Testimonials } from './components/Sections'
 import useReveal from './hooks/useReveal'
+import usePauseOffscreen from './hooks/usePauseOffscreen'
 import './App.css'
 
 const EMPTY_BOOKING = {
@@ -28,6 +29,7 @@ export default function App() {
   const [booking, setBooking] = useState(EMPTY_BOOKING)
   const mainRef = useRef(null)
   useReveal(mainRef)
+  usePauseOffscreen(mainRef)
 
   const handleBookRoom = (room) => {
     setBooking((b) => ({ ...b, room }))

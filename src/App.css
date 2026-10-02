@@ -1244,6 +1244,14 @@
   transform: none;
 }
 
+/* khối nằm ngoài màn hình: tạm dừng mọi animation bên trong (usePauseOffscreen) */
+[data-offscreen],
+[data-offscreen] *,
+[data-offscreen] *::before,
+[data-offscreen] *::after {
+  animation-play-state: paused !important;
+}
+
 /* ---------- Giảm chuyển động: giữ mọi hiệu ứng nhưng nhẹ và chậm hơn ---------- */
 @media (prefers-reduced-motion: reduce) {
   /* lá rơi: chỉ giữ 3 chiếc (xen kẽ), rơi chậm hơn */
